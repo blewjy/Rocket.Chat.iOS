@@ -10,7 +10,7 @@ import UIKit
 import FLAnimatedImage
 import SimpleImageViewer
 import MBProgressHUD
-import MobilePlayer
+import AVKit
 import Nuke
 
 class FilesListViewData {
@@ -156,10 +156,12 @@ class FilesListViewController: BaseViewController {
 
     func openVideo(fromFile file: File) {
         guard let videoURL = file.fullFileURL() else { return }
-        let controller = MobilePlayerViewController(contentURL: videoURL)
+        let controller = AVPlayerViewController()
+        controller.player = AVPlayer(url: videoURL)
         controller.title = file.name
-        controller.activityItems = [file.name, videoURL]
-        present(controller, animated: true, completion: nil)
+        present(controller, animated: true) {
+            controller.player?.play()
+        }
     }
 
     func openDocument(fromFile file: File) {

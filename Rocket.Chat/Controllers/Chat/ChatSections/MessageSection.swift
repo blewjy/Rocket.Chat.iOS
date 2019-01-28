@@ -9,7 +9,6 @@
 import Foundation
 import DifferenceKit
 import RocketChatViewController
-import MobilePlayer
 import FLAnimatedImage
 import SimpleImageViewer
 

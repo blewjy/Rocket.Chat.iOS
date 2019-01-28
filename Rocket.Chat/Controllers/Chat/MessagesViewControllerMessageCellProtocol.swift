@@ -9,7 +9,7 @@
 import Foundation
 import DifferenceKit
 import RocketChatViewController
-import MobilePlayer
+import AVKit
 import FLAnimatedImage
 import SimpleImageViewer
 import RealmSwift
@@ -119,10 +119,12 @@ extension MessagesViewController: ChatMessageCellProtocol {
 
     func openVideoFromCell(attachment: UnmanagedAttachment) {
         guard let videoURL = attachment.fullVideoURL else { return }
-        let controller = MobilePlayerViewController(contentURL: videoURL)
+        let controller = AVPlayerViewController()
+        controller.player = AVPlayer(url: videoURL)
         controller.title = attachment.title
-        controller.activityItems = [attachment.title, videoURL]
-        present(controller, animated: true, completion: nil)
+        present(controller, animated: true) {
+            controller.player?.play()
+        }
     }
 
     func openReplyMessage(message: UnmanagedMessage) {

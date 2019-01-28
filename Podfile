@@ -30,7 +30,6 @@ def shared_pods
 
   # UI
   pod 'RocketChatViewController', :git => 'https://github.com/RocketChat/RocketChatViewController'
-  pod 'MobilePlayer', :git => 'https://github.com/RocketChat/RCiOSMobilePlayer'
   pod 'SimpleImageViewer', :git => 'https://github.com/cardoso/SimpleImageViewer.git'
   pod 'SwipeCellKit'
   ui_pods
@@ -75,7 +74,7 @@ target 'Rocket.ChatTests' do
 end
 
 post_install do |installer|
-  swift3Targets = ['MobilePlayer', 'RCMarkdownParser']
+  swift3Targets = ['RCMarkdownParser']
   swift42Targets = ['SwipeCellKit']
 
   installer.pods_project.targets.each do |target|
